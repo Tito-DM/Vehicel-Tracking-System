@@ -1,0 +1,6 @@
+<h1>Editing Vehicel</h1>
+
+<%= render 'editForm', vehicel: @vehicel %>
+
+<%= link_to 'Show', user_vehicel_path(current_user,@vehicel) %> |
+<%= link_to 'Back', user_vehicels_path(current_user)  %>

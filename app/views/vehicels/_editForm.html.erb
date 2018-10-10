@@ -1,0 +1,48 @@
+<%= form_with(model: vehicel, local: true,  url: user_vehicel_path(current_user, @vehicel), method: :put) do |form| %>
+  <% if vehicel.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(vehicel.errors.count, "error") %> prohibited this vehicel from being saved:</h2>
+
+      <ul>
+      <% vehicel.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :First_name %>
+    <%= form.text_field :First_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :surname %>
+    <%= form.text_field :surname %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vehicel_brand %>
+    <%= form.text_field :vehicel_brand %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vehicel_model %>
+    <%= form.text_field :vehicel_model %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vehicel_color %>
+    <%= form.text_field :vehicel_color %>
+  </div>
+
+  <div class="field">
+    <%= form.label :plate_number %>
+    <%= form.text_field :plate_number %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit 'register your vehicel' %>
+  </div>
+<% end %>

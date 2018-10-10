@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @vehicel.First_name %>
+</p>
+
+<p>
+  <strong>Surname:</strong>
+  <%= @vehicel.surname %>
+</p>
+
+<p>
+  <strong>Vehicel brand:</strong>
+  <%= @vehicel.vehicel_brand %>
+</p>
+
+<p>
+  <strong>Vehicel model:</strong>
+  <%= @vehicel.vehicel_model %>
+</p>
+
+<p>
+  <strong>Vehicel color:</strong>
+  <%= @vehicel.vehicel_color %>
+</p>
+
+<p>
+  <strong>Plate number:</strong>
+  <%= @vehicel.plate_number %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @vehicel.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_user_vehicel_path(current_user,@vehicel) %> |
+<%= link_to 'Back', user_vehicels_path(current_user) %>
