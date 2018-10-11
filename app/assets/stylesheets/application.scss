@@ -24,6 +24,7 @@
 
  body{
   overflow: hidden;
+  background-color: rgb(22, 21, 21);
  }
 
  .v-header{
@@ -63,7 +64,7 @@
    left: 0;
    background-color: black;
    z-index: 1;
-   opacity: .8;;
+   opacity: .9;;
  }
 
  .header-content{
@@ -73,11 +74,19 @@
 .icon-scale{
  position: absolute;
  top: 0;
- left: 15.5%;
+ left: 20.2%;
+}
+
+.text{
+  text-align: center;
+  font-weight: 400;
+  letter-spacing: 1rem;
+  text-transform: uppercase;
+  margin-top: -1rem;
 }
 
 .car-icon-direction {
-  padding-top: -10px !important;
+  padding-top: -1rem !important;
 }
 
 .z-index{
@@ -108,4 +117,59 @@
 .drop-menu{
   display: inline-block !important;
   margin-top: 8px !important;
+}
+
+.first-drop-item{
+  margin-top: 0 !important;
+  padding:0 !important;
+}
+
+.login-text{
+  text-align: left;
+  color: whitesmoke;
+}
+
+.signin-text{
+  text-align: center;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+  font-weight: 400;
+  letter-spacing: 5px;
+}
+
+.logo-text{
+  font-weight: 400;
+  letter-spacing: 3px;
+}
+
+.btn-margin{
+  margin-bottom: 1rem;
+}
+
+.search-form{
+  margin-bottom: 2rem;
+}
+
+.search-inout{
+  width: 80% !important;
+}
+
+.form-text-spacing{
+  letter-spacing: 3px;
+  text-transform: capitalize;
+}
+
+.link{
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+.link:hover {
+  text-decoration: none;
+  color: goldenrod;
+}
+
+.map-view{
+  width: 100vh;
+  height: 20vw;
 }

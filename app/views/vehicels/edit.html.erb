@@ -1,6 +1,8 @@
-<h1>Editing Vehicel</h1>
+<div class="container login-text">
+  <h1 class="text">Editing Vehicel info</h1>
 
-<%= render 'editForm', vehicel: @vehicel %>
+  <%= render 'editForm', vehicel: @vehicel %>
 
-<%= link_to 'Show', user_vehicel_path(current_user,@vehicel) %> |
-<%= link_to 'Back', user_vehicels_path(current_user)  %>
+  <%= link_to 'Show', user_vehicel_path(current_user,@vehicel) %> |
+  <%= link_to 'Back', user_vehicels_path(current_user)  %>
+</div>

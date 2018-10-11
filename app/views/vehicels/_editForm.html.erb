@@ -11,38 +11,38 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :First_name %>
-    <%= form.text_field :First_name %>
+  <div class="form-group">
+    <%= form.label :First_name,:class=>"form-text-spacing" %>
+    <%= form.text_field :First_name,:class=> "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :surname %>
-    <%= form.text_field :surname %>
+  <div class="form-group">
+    <%= form.label :surname,:class=>"form-text-spacing" %>
+    <%= form.text_field :surname,:class=> "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :vehicel_brand %>
-    <%= form.text_field :vehicel_brand %>
+  <div class="form-group">
+    <%= form.label :vehicel_brand,:class=>"form-text-spacing" %>
+    <%= form.text_field :vehicel_brand,:class=> "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :vehicel_model %>
-    <%= form.text_field :vehicel_model %>
+  <div class="form-group">
+    <%= form.label :vehicel_model,:class=>"form-text-spacing" %>
+    <%= form.text_field :vehicel_model,:class=> "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :vehicel_color %>
-    <%= form.text_field :vehicel_color %>
+  <div class="form-group">
+    <%= form.label :vehicel_color,:class=>"form-text-spacing" %>
+    <%= form.text_field :vehicel_color,:class=> "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :plate_number %>
-    <%= form.text_field :plate_number %>
+  <div class="form-group">
+    <%= form.label :plate_number,:class=>"form-text-spacing" %>
+    <%= form.text_field :plate_number,:class=> "form-control" %>
   </div>
 
 
   <div class="actions">
-    <%= form.submit 'register your vehicel' %>
+    <%= form.submit 'register your vehicel',:class=>"btn btn-primary btn-margin form-text-spacing" %>
   </div>
 <% end %>

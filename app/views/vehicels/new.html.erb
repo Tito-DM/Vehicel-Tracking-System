@@ -1,5 +1,7 @@
-<h1>New Vehicel</h1>
+<div class="container login-text">
+  <h1 class="text">Register your vehicle</h1>
 
-<%= render 'form', vehicel: @vehicel ,url: user_vehicels_path(current_user)%>
+  <%= render 'form', vehicel: @vehicel ,url: user_vehicels_path(current_user)%>
 
-<%= link_to 'Back', user_vehicels_path %>
+  <%= link_to 'Back', user_vehicels_path %>
+</div>
