@@ -13,22 +13,24 @@
 
   <div class="field">
     <%= form.label :latitude %>
-    <%= form.text_field :latitude %>
+    <%= form.text_field :latitude, value: @latitude %>
   </div>
 
   <div class="field">
     <%= form.label :longitude %>
-    <%= form.text_field :longitude %>
+    <%= form.text_field :longitude, value: @longitude %>
   </div>
+
+
 
   <div class="field">
     <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
+    <%= form.number_field :user_id, value: @user_id  %>
   </div>
 
   <div class="field">
     <%= form.label :vehicel_id %>
-    <%= form.number_field :vehicel_id %>
+    <%= form.number_field :vehicel_id, value: @vehicel_id  %>
   </div>
 
   <div class="actions">

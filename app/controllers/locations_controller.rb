@@ -15,6 +15,10 @@ class LocationsController < ApplicationController
   # GET /locations/new
   def new
     @location = Location.new
+    @latitude = params[:latitude]
+    @longitude =  params[:longitude]
+    @user_id = params[:user_id]
+    @vehicel_id = params[ :vehicel_id]
   end
 
   # GET /locations/1/edit
@@ -24,6 +28,7 @@ class LocationsController < ApplicationController
   # POST /locations
   # POST /locations.json
   def create
+
     @location = Location.new(location_params)
 
     respond_to do |format|

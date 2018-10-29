@@ -16,6 +16,7 @@ class VehicelsController < ApplicationController
 
   # GET /vehicels/new
   def new
+   
    @vehicel = @user.vehicels.build
   end
 
