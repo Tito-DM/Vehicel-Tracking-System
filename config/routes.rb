@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users do
     resources :vehicels do
-      resources :locations
     end
   end
+   resources :locations
 
   resources :home
 
