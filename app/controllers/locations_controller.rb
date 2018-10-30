@@ -14,22 +14,7 @@ class LocationsController < ApplicationController
 
   # GET /locations/new
   def new
-    @location = Location.new
-    @latitude = params[:latitude]
-    @longitude =  params[:longitude]
-    @user_id = params[:user_id]
-    @vehicel_id = params[ :vehicel_id]
-  end
-
-  # GET /locations/1/edit
-  def edit
-  end
-
-  # POST /locations
-  # POST /locations.json
-  def create
-
-    @location = Location.new(location_params)
+     @location = Location.new(location_params)
 
     respond_to do |format|
       if @location.save
@@ -40,6 +25,17 @@ class LocationsController < ApplicationController
         format.json { render json: @location.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # GET /locations/1/edit
+  def edit
+  end
+
+  # POST /locations
+  # POST /locations.json
+  def create
+
+
   end
 
   # PATCH/PUT /locations/1
