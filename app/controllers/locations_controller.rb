@@ -14,8 +14,7 @@ class LocationsController < ApplicationController
 
   # GET /locations/new
   def new
-     @location = Location.new(location_params)
-
+     @location = Location.create(latitude: params[:latitude], longitude: params[:longitude], user_id: params[:user_id],vehicel_id: params[:vehicel_id])
     respond_to do |format|
       if @location.save
         format.html { redirect_to @location, notice: 'Location was successfully created.' }
