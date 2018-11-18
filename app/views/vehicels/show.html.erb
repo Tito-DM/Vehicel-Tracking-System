@@ -3,9 +3,11 @@
 
   <div style="width: 100vw; height: 480px" id="mapContainer"></div>
   <script>
+  let latitude  = 0.0;
+  let longitude = 0.0;
      <% @vehicel.locations.each do |l|%>
-        let latitude = parseFloat('<%= l.latitude%>')
-        let longitude = parseFloat('<%= l.longitude%>')
+        latitude = parseFloat('<%= l.latitude%>')
+        longitude = parseFloat('<%= l.longitude%>')
      <%end%>
     var platform = new H.service.Platform({
       app_id: 'oLTj8XVPsFtstBhXebZZ',
