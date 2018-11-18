@@ -5,9 +5,12 @@ Rails.application.routes.draw do
     resources :vehicels do
     end
   end
-   resources :locations
+  resources :locations
 
   resources :home
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  namespace :api do
+    resources :pings, only: :index, constraints: { format: 'json' }
+    resources :locations, only: [:index, :create]
+  end
 end
