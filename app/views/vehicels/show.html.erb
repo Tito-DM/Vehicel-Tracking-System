@@ -3,11 +3,14 @@
 
   <div style="width: 100vw; height: 480px" id="mapContainer"></div>
   <script>
-    // Initialize the platform object:
+     <% @vehicel.locations.each do |l|%>
+        let latitude = parseFloat('<%= l.latitude%>')
+        let longitude = parseFloat('<%= l.longitude%>')
+     <%end%>
     var platform = new H.service.Platform({
-    app_id: 'oLTj8XVPsFtstBhXebZZ',
-    app_code: 'xjfwidV6r_b4u4heezueeg',
-    useHTTPS: true
+      app_id: 'oLTj8XVPsFtstBhXebZZ',
+      app_code: 'xjfwidV6r_b4u4heezueeg',
+      useHTTPS: true
     });
 
     // Obtain the default map types from the platform object
@@ -19,31 +22,29 @@
     maptypes.normal.map,
     {
       zoom: 15,
-      center: { lng: 28.2113 , lat: -25.745830 }
+      center: { lng: latitude , lat: longitude }
     });
 
 
 
 
-// Define a variable holding SVG mark-up that defines an icon image:
-var svgMarkup = '<svg width="24" height="24" ' +
-  'xmlns="http://www.w3.org/2000/svg">' +
-  '<rect stroke="white" fill="#1b468d" x="1" y="1" width="50" ' +
-  'height="22" /><text x="12" y="18" font-size="12pt" ' +
-  'font-family="Arial" font-weight="bold" text-anchor="middle" ' +
-  'fill="white">H</text></svg>';
+    // Define a variable holding SVG mark-up that defines an icon image:
+    var svgMarkup = '<svg width="24" height="24" ' +
+    'xmlns="http://www.w3.org/2000/svg">' +
+    '<rect stroke="white" fill="#1b468d" x="1" y="1" width="50" ' +
+    'height="22" /><text x="12" y="18" font-size="12pt" ' +
+    'font-family="Arial" font-weight="bold" text-anchor="middle" ' +
+    'fill="white">H</text></svg>';
 
-// Create an icon, an object holding the latitude and longitude, and a marker:
-var icon = new H.map.Icon(svgMarkup),
-  coords = {lat: -25.745830, lng: 28.2113},
-  marker = new H.map.Marker(coords, {icon: icon});
+    // Create an icon, an object holding the latitude and longitude, and a marker:
+    var icon = new H.map.Icon(svgMarkup),
+    coords = {lat: -25.745830, lng: 28.2113},
+    marker = new H.map.Marker(coords, {icon: icon});
 
-// Add the marker to the map and center the map at the location of the marker:
-map.addObject(marker);
-map.setCenter(coords);
-  </script>
-
-
+    // Add the marker to the map and center the map at the location of the marker:
+    map.addObject(marker);
+    map.setCenter(coords);
+</script>
 
 
 
@@ -58,7 +59,8 @@ map.setCenter(coords);
 
 
 
+<%= link_to 'Edit', edit_user_vehicel_path(current_user,@vehicel), :class=> 'btn btn-outline-success btn-map' %> |
+<%= link_to 'Back', user_vehicels_path(current_user), :class=> 'btn btn-outline-success btn-map' %>|
+<%= link_to 'Get to your vehicle', user_vehicels_path(current_user) ,:class=> 'btn btn-outline-success btn-map'%>
 
 
-<%= link_to 'Edit', edit_user_vehicel_path(current_user,@vehicel) %> |
-<%= link_to 'Back', user_vehicels_path(current_user) %>
