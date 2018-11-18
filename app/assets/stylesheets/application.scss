@@ -64,7 +64,7 @@
    left: 0;
    background-color: black;
    z-index: 1;
-   opacity: .9;
+   opacity: .87;
  }
 
  .header-content{
@@ -172,4 +172,9 @@
 .map-view{
   width: 100vh;
   height: 20vw;
+}
+
+.no-display{
+  margin-top: -40px !important;
+  text-align: center;
 }
