@@ -32,7 +32,7 @@
           <td><%= vehicel.vehicel_model %></td>
           <td><%= vehicel.vehicel_color %></td>
           <td><%= vehicel.plate_number %></td>
-          <td><%= link_to 'Show', user_vehicel_path(current_user, vehicel.id) %></td>
+          <td><%= link_to 'Show', user_vehicel_path(current_user, vehicel.id),'data-no-turbolink':  true %></td>
           <td><%= link_to '<i class="material-icons">edit</i>'.html_safe, edit_user_vehicel_path(current_user, vehicel.id) %></td>
           <td><%= link_to '<i class="material-icons text-danger">delete</i>'.html_safe, user_vehicel_path(current_user, vehicel.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>

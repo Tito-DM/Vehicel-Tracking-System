@@ -9,7 +9,12 @@ Rails.application.routes.draw do
   end
 
 
-  resources :home
+  resources :home do
+      collection do
+        get :about
+        get :hdwconnection
+      end
+  end
 
   namespace :api do
     resources :pings, only: :index, constraints: { format: 'json' }

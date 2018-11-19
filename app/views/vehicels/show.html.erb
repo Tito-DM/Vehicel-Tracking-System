@@ -3,9 +3,12 @@
 
   <div style="width: 100vw; height: 480px" id="mapContainer"></div>
   <script>
-  let latitude  = 0.0;
-  let longitude = 0.0;
-     <% @vehicel.locations.each do |l|%>
+    let latitude  = 0.0;
+    let longitude = 0.0;
+
+    $(document).on('ready turbolinks:change turbolinks:load', function() {
+
+      <% @vehicel.locations.each do |l|%>
         latitude = parseFloat('<%= l.latitude%>')
         longitude = parseFloat('<%= l.longitude%>')
      <%end%>
@@ -46,23 +49,13 @@
     // Add the marker to the map and center the map at the location of the marker:
     map.addObject(marker);
     map.setCenter(coords);
+
+    });
 </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-<%= link_to 'Edit', edit_user_vehicel_path(current_user,@vehicel), :class=> 'btn btn-outline-success btn-map' %> |
-<%= link_to 'Back', user_vehicels_path(current_user), :class=> 'btn btn-outline-success btn-map' %>|
+<%= link_to 'Edit', edit_user_vehicel_path(current_user,@vehicel), :class=> 'btn btn-outline-success btn-map' %>
+<%= link_to 'Back', user_vehicels_path(current_user), :class=> 'btn btn-outline-success btn-map' %>
 <%= link_to 'Get to your vehicle', user_vehicels_path(current_user) ,:class=> 'btn btn-outline-success btn-map'%>
+<%= link_to 'Get From hardware', user_vehicels_path(current_user) ,:class=> 'btn btn-outline-success btn-map'%>
 
 
