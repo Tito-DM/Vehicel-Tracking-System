@@ -6,8 +6,9 @@ module Api
     end
 
     def create
+
       location = Location.create!(location_params)
-      render json: location, status: :ok
+      render json: location, status: :ok if location.save
     end
 
     private

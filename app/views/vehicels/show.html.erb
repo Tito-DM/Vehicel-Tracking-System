@@ -1,16 +1,14 @@
 
-
-
   <div style="width: 100vw; height: 480px" id="mapContainer"></div>
   <script>
-    let latitude  = 0.0;
-    let longitude = 0.0;
+    let lat_  = 0.0;
+    let long_ = 0.0;
 
     $(document).on('ready turbolinks:change turbolinks:load', function() {
 
       <% @vehicel.locations.each do |l|%>
-        latitude = parseFloat('<%= l.latitude%>')
-        longitude = parseFloat('<%= l.longitude%>')
+        lat_ = parseFloat('<%= l.latitude%>')
+        long_ = parseFloat('<%= l.longitude%>')
      <%end%>
     var platform = new H.service.Platform({
       app_id: 'oLTj8XVPsFtstBhXebZZ',
@@ -27,7 +25,7 @@
     maptypes.normal.map,
     {
       zoom: 15,
-      center: { lng: latitude , lat: longitude }
+      center: { lng: lat_ , lat: long_ }
     });
 
 
@@ -43,7 +41,7 @@
 
     // Create an icon, an object holding the latitude and longitude, and a marker:
     var icon = new H.map.Icon(svgMarkup),
-    coords = {lat: latitude, lng: longitude},
+    coords = {lat: lat_, lng: long_},
     marker = new H.map.Marker(coords, {icon: icon});
 
     // Add the marker to the map and center the map at the location of the marker:
@@ -56,6 +54,8 @@
 <%= link_to 'Edit', edit_user_vehicel_path(current_user,@vehicel), :class=> 'btn btn-outline-success btn-map' %>
 <%= link_to 'Back', user_vehicels_path(current_user), :class=> 'btn btn-outline-success btn-map' %>
 <%= link_to 'Get to your vehicle', user_vehicels_path(current_user) ,:class=> 'btn btn-outline-success btn-map'%>
-<%= link_to 'Get From hardware', user_vehicels_path(current_user) ,:class=> 'btn btn-outline-success btn-map'%>
+
+<%= link_to 'Get From hardware', '#',:onclick => 'document.getElementById("hardware_state").textContent = "hello";
+',class:"btn btn-outline-success btn-map" %>
 
 
