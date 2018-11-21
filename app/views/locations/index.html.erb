@@ -19,6 +19,9 @@
       <th>Latitude</th>
       <th>Longitude</th>
       <th>Vehicel ID</th>
+      <th>Date</th>
+      <th>Address</th>
+      <th></th>
     </tr>
   </thead>
 
@@ -28,6 +31,9 @@
         <td><%= location.latitude %></td>
         <td><%= location.longitude %></td>
         <td><%= location.vehicel_id %></td>
+        <td><%= location.created_at %></td>
+        <td><%= link_to 'view', "http://maps.google.com/maps?q=loc:#{location.latitude},#{location.longitude}" %></td>
+        <td><%= link_to '<i class="material-icons text-danger">delete</i>'.html_safe, user_vehicel_location_path(current_user, location.vehicel_id,location.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
       </tr>
     <% end %>
