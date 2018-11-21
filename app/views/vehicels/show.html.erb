@@ -1,82 +1,92 @@
+<p id='current_location'></p>
+ <div id="myMap" style="position:relative;width: 100vw; height: 480px"></div>
 
-  <div style="width: 100vw; height: 480px" id="mapContainer"></div>
-  <script>
+
+
+<script type='text/javascript'>
+    var defaultColor = 'purple';
+    var hoverColor = 'blue';
+    var user_lat, user_long;
+    var mouseDownColor = 'red';
+    var map, searchManager;
     let lat_  = 0.0;
     let long_ = 0.0;
-
-    $(document).on('ready turbolinks:change turbolinks:load', function() {
-
-      <% @vehicel.locations.each do |l|%>
+     <% @vehicel.locations.each do |l|%>
         lat_ = parseFloat('<%= l.latitude%>')
         long_ = parseFloat('<%= l.longitude%>')
      <%end%>
 
-    var platform = new H.service.Platform({
-      app_id: 'oLTj8XVPsFtstBhXebZZ',
-      app_code: 'xjfwidV6r_b4u4heezueeg',
-      useHTTPS: true
-    });
+       function GetMap() {
+        map = new Microsoft.Maps.Map('#myMap', {
+            credentials: 'AjX11KcC0K8DVPhGhcq6w_4x4on1ZL8i0XRjz9Skdt_MVZ90kxw7JQcxyxnSFFf5 ',
+            center: new Microsoft.Maps.Location(lat_, long_),
+            zoom: 14
+        });
 
 
 
-
-    var pixelRatio = window.devicePixelRatio || 1;
-    var defaultLayers = platform.createDefaultLayers({
-    tileSize: pixelRatio === 1 ? 256 : 512,
-    ppi: pixelRatio === 1 ? undefined : 320
-    });
-
-    // Obtain the default map types from the platform object
-    var maptypes = platform.createDefaultLayers();
-
-    // Instantiate (and display) a map object:
-    var map = new H.Map(
-    document.getElementById('mapContainer'),
-    maptypes.normal.map,
-    {
-      pixelRatio: pixelRatio,
-      zoom: 15,
-      center: { lng: lat_ , lat: long_ }
-    });
-
-      //Step 3: make the map interactive
-  // MapEvents enables the event system
-  // Behavior implements default interactions for pan/zoom (also on mobile touch environments)
-  var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
-
-  // Create the default UI components
-  var ui = H.ui.UI.createDefault(map, defaultLayers);
+        //Make a request to reverse geocode the center of the map.
+        reverseGeocode();
+    }
 
 
 
+    function reverseGeocode() {
+        //If search manager is not defined, load the search module.
+        if (!searchManager) {
+            //Create an instance of the search manager and call the reverseGeocode function again.
+            Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
+                searchManager = new Microsoft.Maps.Search.SearchManager(map);
+                reverseGeocode();
+            });
+        } else {
+            var searchRequest = {
+                location: map.getCenter(),
+                callback: function (r) {
+                    //Tell the user the name of the result.
+
+                var center = map.getCenter();
+                var pin = new Microsoft.Maps.Pushpin(center, {
+                title: 'Vehicle location',
+                subTitle: r.name,
+                text: 'V'
+                 });
+
+        //Add the pushpin to the map
+        map.entities.push(pin);
+         Microsoft.Maps.Events.addHandler(pin, 'mouseover', function (e) {
+            e.target.setOptions({ color: hoverColor });
+        });
+
+        Microsoft.Maps.Events.addHandler(pin, 'mousedown', function (e) {
+            e.target.setOptions({ color: mouseDownColor });
+        });
+
+        Microsoft.Maps.Events.addHandler(pin, 'mouseout', function (e) {
+            e.target.setOptions({ color: defaultColor });
+        });
+                },
+                errorCallback: function (e) {
+                    //If there is an error, alert the user about it.
+                    alert("Unable to reverse geocode location.");
+                }
+            };
+
+            //Make the reverse geocode request.
+            searchManager.reverseGeocode(searchRequest);
+        }
+    }
+
+      $(document).on('ready turbolinks:change turbolinks:load', function() {
 
 
+   GetMap();
 
-    // Define a variable holding SVG mark-up that defines an icon image:
-    var svgMarkup = '<svg width="24" height="24" ' +
-    'xmlns="http://www.w3.org/2000/svg">' +
-    '<rect stroke="white" fill="#1b468d" x="1" y="1" width="50" ' +
-    'height="22" /><text x="12" y="18" font-size="12pt" ' +
-    'font-family="Arial" font-weight="bold" text-anchor="middle" ' +
-    'fill="white">H</text></svg>';
+      });
 
-    // Create an icon, an object holding the latitude and longitude, and a marker:
-    var icon = new H.map.Icon(svgMarkup),
-    coords = {lat: lat_, lng: long_},
-    marker = new H.map.Marker(coords, {icon: icon});
+    </script>
 
-    // Add the marker to the map and center the map at the location of the marker:
-    map.addObject(marker);
-    map.setCenter(coords);
-
-    });
-</script>
-
-<%= link_to 'Edit', edit_user_vehicel_path(current_user,@vehicel), :class=> 'btn btn-outline-success btn-map' %>
+    <%= link_to 'Edit', edit_user_vehicel_path(current_user,@vehicel), :class=> 'btn btn-outline-success btn-map' %>
 <%= link_to 'Back', user_vehicels_path(current_user), :class=> 'btn btn-outline-success btn-map' %>
-<%= link_to 'Get to your vehicle', user_vehicels_path(current_user) ,:class=> 'btn btn-outline-success btn-map'%>
-
-<%= link_to 'Get From hardware', '#',:onclick => 'document.getElementById("hardware_state").textContent = "hello";
-',class:"btn btn-outline-success btn-map" %>
 
 
