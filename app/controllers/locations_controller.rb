@@ -4,7 +4,8 @@ class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.json
   def index
-    @locations = Location.all
+    @locations = Location.where("user_id = ?", params[:user_id])
+    return @locations = Location.where("vehicel_id = ? ", params[:search_field]).all if params[:commit] == "Search"
   end
 
   # GET /locations/1

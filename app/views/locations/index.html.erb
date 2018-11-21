@@ -1,15 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Locations</h1>
+<div class="container">
+  <%= link_to user_vehicel_locations_path(current_user), :class=>"link" do %>
+      <h1 class="signin-text form-text-spacing btn-margin">Locations History</h1>
+  <%end%>
 
-<table>
+
+ <%= form_tag( user_vehicel_locations_path(current_user), method: "get", class: 'form-inline search-form') do %>
+      <%= text_field_tag :search_field,"", class: 'form-control mr-sm-2 search-inout', placeholder: 'Search using vehicle ID' %>
+      <%= submit_tag "Search",class:"btn btn-outline-success my-2 my-sm-0" %>
+ <%end%>
+
+
+
+<table class="table">
   <thead>
     <tr>
       <th>Latitude</th>
       <th>Longitude</th>
-      <th>User</th>
-      <th>Vehicel</th>
-      <th colspan="3"></th>
+      <th>Vehicel ID</th>
     </tr>
   </thead>
 
@@ -18,16 +27,13 @@
       <tr>
         <td><%= location.latitude %></td>
         <td><%= location.longitude %></td>
-        <td><%= location.user_id %></td>
         <td><%= location.vehicel_id %></td>
-        <td><%= link_to 'Show', location %></td>
-        <td><%= link_to 'Edit', edit_location_path(location) %></td>
-        <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+</div>
 
-<%= link_to 'New Location', new_location_path %>
