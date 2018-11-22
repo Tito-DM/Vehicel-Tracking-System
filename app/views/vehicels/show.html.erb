@@ -1,16 +1,16 @@
-<p id='current_location'></p>
- <div id="myMap" style="position:relative;width: 100vw; height: 480px"></div>
+ <div id="myMap"></div>
 
 
 
 <script type='text/javascript'>
-    var defaultColor = 'purple';
-    var hoverColor = 'blue';
-    var user_lat, user_long;
-    var mouseDownColor = 'red';
-    var map, searchManager;
-    let lat_  = 0.0;
-    let long_ = 0.0;
+    let defaultColor = 'purple',
+        hoverColor = 'blue',
+        user_lat, user_long,
+        mouseDownColor = 'red',
+        map, searchManager,
+        lat_  = 0.0,
+        long_ = 0.0;
+
      <% @vehicel.locations.each do |l|%>
         lat_ = parseFloat('<%= l.latitude%>')
         long_ = parseFloat('<%= l.longitude%>')
@@ -20,33 +20,28 @@
         map = new Microsoft.Maps.Map('#myMap', {
             credentials: 'AjX11KcC0K8DVPhGhcq6w_4x4on1ZL8i0XRjz9Skdt_MVZ90kxw7JQcxyxnSFFf5 ',
             center: new Microsoft.Maps.Location(lat_, long_),
-            zoom: 14
+            zoom: 15
         });
-
-
-
         //Make a request to reverse geocode the center of the map.
         reverseGeocode();
     }
-
-
 
     function reverseGeocode() {
         //If search manager is not defined, load the search module.
         if (!searchManager) {
             //Create an instance of the search manager and call the reverseGeocode function again.
-            Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
+            Microsoft.Maps.loadModule('Microsoft.Maps.Search', () => {
                 searchManager = new Microsoft.Maps.Search.SearchManager(map);
                 reverseGeocode();
             });
         } else {
-            var searchRequest = {
+            let searchRequest = {
                 location: map.getCenter(),
-                callback: function (r) {
+                callback: (r) => {
                     //Tell the user the name of the result.
 
-                var center = map.getCenter();
-                var pin = new Microsoft.Maps.Pushpin(center, {
+                const center = map.getCenter();
+                const pin = new Microsoft.Maps.Pushpin(center, {
                 title: 'Vehicle location',
                 subTitle: r.name,
                 text: 'V'
@@ -54,15 +49,15 @@
 
         //Add the pushpin to the map
         map.entities.push(pin);
-         Microsoft.Maps.Events.addHandler(pin, 'mouseover', function (e) {
+         Microsoft.Maps.Events.addHandler(pin, 'mouseover',(e) => {
             e.target.setOptions({ color: hoverColor });
         });
 
-        Microsoft.Maps.Events.addHandler(pin, 'mousedown', function (e) {
+        Microsoft.Maps.Events.addHandler(pin, 'mousedown', (e) => {
             e.target.setOptions({ color: mouseDownColor });
         });
 
-        Microsoft.Maps.Events.addHandler(pin, 'mouseout', function (e) {
+        Microsoft.Maps.Events.addHandler(pin, 'mouseout', (e) => {
             e.target.setOptions({ color: defaultColor });
         });
                 },
@@ -77,7 +72,7 @@
         }
     }
 
-      $(document).on('ready turbolinks:change turbolinks:load', function() {
+      $(document).on('ready turbolinks:change turbolinks:load', () => {
 
 
    GetMap();
@@ -87,6 +82,6 @@
     </script>
 
     <%= link_to 'Edit', edit_user_vehicel_path(current_user,@vehicel), :class=> 'btn btn-outline-success btn-map' %>
-<%= link_to 'Back', user_vehicels_path(current_user), :class=> 'btn btn-outline-success btn-map' %>
+    <%= link_to 'Back', user_vehicels_path(current_user), :class=> 'btn btn-outline-success btn-map' %>
 
 

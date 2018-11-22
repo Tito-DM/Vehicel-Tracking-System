@@ -1,5 +1,6 @@
 module Api
   class LocationsController < ApiController
+     skip_before_action :authenticate_user!, only: [:create]
     def index
       locations = Location.all
       render json: locations, status: :ok
