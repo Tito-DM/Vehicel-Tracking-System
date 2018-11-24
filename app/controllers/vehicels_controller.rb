@@ -31,7 +31,7 @@ class VehicelsController < ApplicationController
     @vehicel = @user.vehicels.create(vehicel_params)
     respond_to do |format|
       if @vehicel.save
-        format.html { redirect_to user_vehicel_path(@user, @vehicel) }
+        format.html { redirect_to user_vehicels_path(@user, @vehicel) }
         format.json { render :show, status: :created, location: @vehicel }
       else
         format.html { render :new }
