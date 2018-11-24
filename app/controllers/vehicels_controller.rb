@@ -5,7 +5,7 @@ class VehicelsController < ApplicationController
   # GET /vehicels
   # GET /vehicels.json
   def index
-    @vehicels = Vehicel.all.order(created_at: :desc)
+    @vehicels = Vehicel.where("user_id = ?", params[:user_id]).order(created_at: :desc)
     return @vehicels = Vehicel.where("vehicel_brand like ? or vehicel_model like ?", "%#{params[:search_field].downcase}%" , "%#{params[:search_field].downcase}%").all if params[:commit] == "Search"
   end
   # GET /vehicels/1

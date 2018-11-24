@@ -27,7 +27,7 @@
  }
 
  body{
-  overflow: hidden;
+
   background-color: rgb(22, 21, 21);
   color: whitesmoke;
  }
@@ -139,6 +139,7 @@
   margin-bottom: 10px;
   text-transform: capitalize;
   font-weight: 400;
+  font-size: 25px;
   letter-spacing: 5px;
 }
 
@@ -199,6 +200,7 @@
 
 }
 
+
 .about-text{
   width: 70%;
   letter-spacing: 1.6px;
@@ -228,4 +230,32 @@
 .text-size{
   margin-top: 10px;
   font-size: 12px;
+}
+
+.max-w{
+  max-width: 750px !important;
+}
+
+#error_explanation{
+  background-color: white;
+  color: black;
+  list-style: inside;
+  letter-spacing: 1.6px;
+
+}
+
+#error_explanation ul li {
+list-style-type: disc;
+padding-left: 20px;
+
+}
+
+#error_explanation h2{
+  background-color: rgb(211, 53, 53);
+  color: whitesmoke;
+  font-size: 25px;
+  height: 40px;
+  border-bottom: 1px solid;
+  text-transform: capitalize;
+
 }
