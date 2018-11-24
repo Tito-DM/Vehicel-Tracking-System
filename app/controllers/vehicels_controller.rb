@@ -31,7 +31,7 @@ class VehicelsController < ApplicationController
     @vehicel = @user.vehicels.create(vehicel_params)
     respond_to do |format|
       if @vehicel.save
-        format.html { redirect_to user_vehicel_path(@user, @vehicel), notice: 'Vehicel was successfully created.' }
+        format.html { redirect_to user_vehicel_path(@user, @vehicel) }
         format.json { render :show, status: :created, location: @vehicel }
       else
         format.html { render :new }
@@ -61,7 +61,7 @@ class VehicelsController < ApplicationController
     @vehicel =  @user.vehicels.find(params[:id])
     @vehicel.destroy
     respond_to do |format|
-      format.html { redirect_to user_vehicels_path(@user), notice: 'Vehicel was successfully destroyed.' }
+      format.html { redirect_to user_vehicels_path(@user) }
       format.json { head :no_content }
     end
   end
