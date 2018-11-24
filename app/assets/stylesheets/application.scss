@@ -21,6 +21,10 @@
    padding: 0;
    box-sizing: border-box;
  }
+ html {
+   height: 100%;
+   /* note #1 */
+ }
 
  body{
   overflow: hidden;
@@ -186,17 +190,22 @@
 }
 
 .about-wh{
-  margin-top: -25px;
-  max-width: 1480px !important;
-  height: 80vh;
-  width: 100vw !important;
+    position:absolute;
+    width:100%;
+    overflow-y:auto;
+    left: 20%;
+    top:10%;
+    bottom:0;
+
 }
 
 .about-text{
   width: 70%;
+  letter-spacing: 1.6px;
   margin: 0 auto;
   color: rgb(37, 34, 34);
 }
+
 
 .about-heading{
   font-weight: 400;
@@ -210,4 +219,13 @@
   position:relative;
   width: 100vw;
   height: 480px;
+}
+
+.with-container {
+  max-width: 1200px !important;
+}
+
+.text-size{
+  margin-top: 10px;
+  font-size: 12px;
 }
